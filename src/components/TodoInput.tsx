@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import arrowDown from "../assets/down-arrow.svg"
 
 interface ITodoInput {
@@ -6,11 +6,15 @@ interface ITodoInput {
 }
 
 const TodoInput: FC<ITodoInput> = ({ addTodo }) => {
+  const [inputValue, setInputValue] = useState<string>("")
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const inputElement = e.currentTarget[0] as HTMLInputElement
-    addTodo(inputElement.value)
-    inputElement.value = ""
+
+    if (inputValue) {
+      addTodo(inputValue)
+      setInputValue("")
+    }
   }
   return (
     <form
@@ -22,6 +26,8 @@ const TodoInput: FC<ITodoInput> = ({ addTodo }) => {
         className="w-full p-3 border-none outline-none opacity-50"
         type="text"
         placeholder="What needs to be done?"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
     </form>
   )
