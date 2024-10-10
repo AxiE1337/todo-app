@@ -11,7 +11,7 @@ const TodoInput: FC<ITodoInput> = ({ addTodo }) => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (inputValue) {
+    if (inputValue.trim()) {
       addTodo(inputValue)
       setInputValue("")
     }
