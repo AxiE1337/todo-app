@@ -1,3 +1,3 @@
 # Start app
 
-To start and app, run `npm install` and `npm run start`.
+To start, run `npm install` and `npm run start`.
